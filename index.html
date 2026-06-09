@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bich Nguyen — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,400;1,9..144,600&family=Syne:wght@700;800&family=Outfit:wght@300;400;500;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --gr:#2E5E20;--gr2:#4A8032;--gr3:#7AB05A;--gr-l:#C8DFB8;--gr-bg:#EAF3E0;
+  --pk:#E8507A;--pk-l:#F8C0D0;--pk-bg:#FEF0F5;
+  --yl:#E8C830;--yl-l:#F5E898;--yl-bg:#FFFAE0;
+  --w:#FFFFFF;--off:#F8F6F1;
+  --ink:#141810;--ink2:#2A321E;--ink3:#5A6450;--ink4:#9AA490;
+  --b:rgba(20,24,16,.08);--b2:rgba(20,24,16,.15);
+  --serif:'Fraunces',Georgia,serif;
+  --disp:'Syne',sans-serif;
+  --sans:'Outfit',sans-serif;
+  --ui:'DM Sans',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font-family:var(--sans);cursor:pointer;border:none;background:none}
+body{font-family:var(--sans);background:var(--off);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+.sr{opacity:0;transform:translateY(22px);transition:opacity .6s cubic-bezier(.4,0,.2,1),transform .6s cubic-bezier(.4,0,.2,1)}
+.sr.d1{transition-delay:.1s}.sr.d2{transition-delay:.2s}.sr.d3{transition-delay:.3s}
+.sr.in{opacity:1;transform:translateY(0)}
+
+@keyframes floatA{0%,100%{transform:translateY(0) rotate(-12deg)}50%{transform:translateY(-14px) rotate(-10deg)}}
+@keyframes floatB{0%,100%{transform:translateY(0) rotate(8deg)}50%{transform:translateY(-10px) rotate(6deg)}}
+@keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.25;transform:scale(.4)}}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes wave{0%,100%{border-radius:48% 52% 44% 56%/55% 45% 58% 42%}50%{border-radius:56% 44% 52% 48%/44% 58% 42% 56%}}
+@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+@keyframes photoIn{from{opacity:0;transform:scale(.94) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:600;height:58px;padding:0 44px;
+  display:flex;justify-content:space-between;align-items:center;
+  background:rgba(248,246,241,.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1.5px solid var(--b);transition:all .3s}
+nav.on{background:rgba(248,246,241,.98);box-shadow:0 2px 18px rgba(20,24,16,.08)}
+.n-logo{font-family:var(--serif);font-size:17px;font-weight:400;color:var(--ink)}
+.n-logo em{font-style:italic;color:var(--gr)}
+.n-links{display:flex;gap:28px;list-style:none}
+.n-links a{font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);transition:color .2s}
+.n-links a:hover{color:var(--gr)}
+.n-cta{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:9px 22px;background:var(--gr);color:#fff;border-radius:100px;box-shadow:0 4px 16px rgba(46,94,32,.28);transition:all .2s}
+.n-cta:hover{background:var(--ink);transform:translateY(-1px)}
+
+/* ══════════════ HERO ══════════════ */
+.hero{
+  min-height:100vh;position:relative;overflow:hidden;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:80px 0 60px;
+  background:
+    radial-gradient(ellipse 65% 60% at 22% 50%, rgba(200,223,184,.5) 0%, transparent 60%),
+    radial-gradient(ellipse 65% 60% at 78% 50%, rgba(248,192,208,.42) 0%, transparent 60%),
+    #F8F6F1;
+}
+.h-grid{position:absolute;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(rgba(46,94,32,.05) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(46,94,32,.05) 1px,transparent 1px);
+  background-size:60px 60px;
+  mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,rgba(0,0,0,.45) 0%,transparent 75%);
+  -webkit-mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,rgba(0,0,0,.45) 0%,transparent 75%)}
+.h-wave{position:absolute;bottom:-40px;left:-8%;right:-8%;height:42%;
+  background:linear-gradient(180deg,var(--pk-bg) 0%,var(--pk-l) 100%);
+  border-radius:50% 50% 0 0/18% 18% 0 0;
+  animation:wave 10s ease-in-out infinite;z-index:0;opacity:.55}
+
+.h-eye{display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--gr);background:var(--gr-bg);border:1.5px solid var(--gr-l);
+  padding:7px 18px;border-radius:100px;margin-bottom:24px;position:relative;z-index:5}
+.h-eye-dot{width:6px;height:6px;border-radius:50%;background:var(--gr);animation:blink 2.4s ease-in-out infinite}
+
+/* 3-column grid — fixed columns so text never overflows */
+.h-row{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 260px minmax(0,1fr);
+  width:100%;max-width:1200px;
+  padding:0 44px;
+  position:relative;z-index:3;
+  align-items:center;
+  gap:0;
+}
+
+/* LEFT: PORTFOLIO */
+.h-left{display:flex;flex-direction:column;align-items:flex-end;padding-right:16px;min-width:0}
+.wow-text{
+  font-family:var(--disp);font-weight:800;line-height:.88;letter-spacing:-.03em;
+  font-size:min(5.2vw,72px);
+  text-align:right;
+  word-break:keep-all;
+  overflow-wrap:normal;
+  background:linear-gradient(135deg, #1A3D10 0%, #2E5E20 40%, #4A8032 70%, #7AB05A 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.h-tagline{
+  font-family:var(--serif);font-size:clamp(11px,1vw,13px);font-style:italic;
+  color:var(--ink3);line-height:1.65;margin-top:14px;text-align:right;
+  -webkit-text-fill-color:var(--ink3);
+}
+
+/* RIGHT: BICH (filled) + NGUYEN (outline) */
+.h-right{display:flex;flex-direction:column;align-items:flex-start;padding-left:16px;min-width:0}
+.wow-name{
+  font-family:var(--disp);font-weight:800;line-height:.88;letter-spacing:-.03em;
+  font-size:min(5.2vw,72px);
+  text-align:left;
+  word-break:keep-all;overflow-wrap:normal;
+  color:var(--ink);
+}
+.wow-name .outline{
+  display:block;
+  -webkit-text-stroke:2px var(--ink);
+  -webkit-text-fill-color:transparent;
+}
+.h-aspire{
+  font-family:var(--serif);font-size:clamp(11px,1vw,13px);font-style:italic;
+  color:var(--ink3);line-height:1.65;margin-top:14px;text-align:left;
+  max-width:none;
+}
+
+/* ── PHOTO (centre) ── */
+.h-photo-col{position:relative;display:flex;align-items:center;justify-content:center;z-index:4}
+.h-orbit{position:absolute;top:50%;left:50%;width:320px;height:320px;margin:-160px 0 0 -160px;
+  border:1.5px dashed rgba(46,94,32,.14);border-radius:50%;
+  animation:spin 40s linear infinite;pointer-events:none;z-index:2}
+.h-orbit-dot{width:9px;height:9px;background:var(--pk);border-radius:50%;
+  position:absolute;top:-4.5px;left:50%;margin-left:-4.5px;
+  box-shadow:0 0 12px var(--pk),0 0 24px rgba(232,80,122,.3)}
+
+/* arch frame — white bg photo sits cleanly */
+.h-arch{
+  position:relative;width:280px;
+  border-radius:200px 200px 32px 32px;overflow:hidden;
+  background:linear-gradient(160deg, var(--gr-l) 0%, var(--pk-l) 100%);
+  box-shadow:0 0 0 5px rgba(255,255,255,.9),
+             0 0 0 6px rgba(200,223,184,.5),
+             0 32px 80px rgba(46,94,32,.18),
+             0 8px 24px rgba(232,80,122,.1);
+  animation:photoIn .9s cubic-bezier(.34,1.56,.64,1) .3s both;
+  z-index:3;
+}
+.h-arch::before{content:'';display:block;padding-top:133%}
+.h-arch img{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  object-fit:cover;
+  object-position:center 8%;
+}
+
+/* stickers */
+.pstk{position:absolute;z-index:6;border-radius:50%;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  font-family:var(--sans);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  text-align:center;line-height:1.3;box-shadow:0 8px 24px rgba(20,24,16,.18)}
+.pstk-open{top:-14px;left:50%;transform:translateX(-25%);
+  width:72px;height:72px;background:var(--pk);color:#fff;
+  animation:floatA 6s ease-in-out infinite}
+.pstk-hcm{bottom:24px;right:-24px;
+  width:64px;height:64px;background:var(--yl);color:var(--ink);
+  animation:floatB 7.5s ease-in-out infinite .6s}
+
+.h-cta-wrap{position:relative;z-index:5;margin-top:44px;display:flex;justify-content:center}
+.btn-gr{font-family:var(--sans);font-size:13px;font-weight:700;letter-spacing:.06em;
+  padding:15px 40px;border-radius:100px;background:var(--gr);color:#fff;
+  box-shadow:0 6px 28px rgba(46,94,32,.35);transition:all .22s;display:inline-block}
+.btn-gr:hover{background:var(--ink);transform:translateY(-3px);box-shadow:0 14px 40px rgba(46,94,32,.42)}
+
+/* ── MARQUEE — black bg ── */
+.mq-wrap{overflow:hidden;background:var(--ink);padding:12px 0}
+.mq-track{display:flex;width:max-content;animation:mq 40s linear infinite;will-change:transform}
+.mq-item{white-space:nowrap;font-family:var(--serif);font-size:14px;font-style:italic;
+  color:rgba(255,255,255,.75);padding:0 32px;display:flex;align-items:center;gap:10px}
+.mq-item em{font-style:normal;color:var(--yl);font-size:9px}
+
+/* ── SHARED ── */
+.sec{padding:80px 44px;position:relative;overflow:hidden}
+.chip{display:inline-flex;align-items:center;gap:7px;
+  font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.17em;text-transform:uppercase;
+  padding:6px 14px;border-radius:100px;margin-bottom:16px;width:fit-content}
+.chip-gr{background:var(--gr-bg);color:var(--gr);border:1.5px solid var(--gr-l)}
+.chip-pk{background:var(--pk-bg);color:var(--pk);border:1.5px solid var(--pk-l)}
+h2.sh{font-family:var(--disp);font-size:clamp(36px,4.5vw,56px);font-weight:800;
+  letter-spacing:-.025em;line-height:.94;color:var(--ink);margin-bottom:10px}
+h2.sh em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--gr)}
+.ssub{font-size:15px;font-weight:300;color:var(--ink3);line-height:1.75;max-width:480px;margin-bottom:44px}
+
+/* ── ABOUT ── */
+#about{background:var(--w);padding:0}
+.about-split{display:grid;grid-template-columns:1fr 1fr;min-height:100vh}
+.about-l{background:var(--gr);padding:80px 52px;display:flex;flex-direction:column;justify-content:center}
+.about-l .chip{background:rgba(255,255,255,.15);color:rgba(255,255,255,.82);border-color:rgba(255,255,255,.25)}
+.about-l h2.sh{color:#fff;margin-bottom:20px}
+.about-l h2.sh em{color:var(--yl)}
+.about-l p{font-size:15px;font-weight:300;color:rgba(255,255,255,.72);line-height:1.85}
+.about-l p+p{margin-top:14px}
+.about-l strong{font-weight:700;color:#fff}
+.about-r{padding:80px 52px;background:var(--off);display:flex;flex-direction:column;justify-content:center}
+.fact-box{margin-top:16px}
+.f-row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1.5px solid var(--b)}
+.f-row:last-child{border-bottom:none}
+.fl{font-family:var(--sans);font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink4)}
+.fv{font-family:var(--sans);font-size:13px;font-weight:600;color:var(--ink2);text-align:right}
+.fv.open{color:var(--gr)}
+
+/* ── SKILLS ── */
+#skills{background:var(--off)}
+#skills::before{content:'';position:absolute;top:-80px;right:-60px;width:320px;height:320px;border-radius:50%;
+  background:radial-gradient(circle,var(--gr-l) 0%,transparent 65%);opacity:.7;pointer-events:none}
+.skills-section{display:flex;flex-direction:column;gap:12px}
+.skills-row{display:grid;gap:12px}
+.sr-tools{grid-template-columns:repeat(4,1fr)}
+.sr-areas{grid-template-columns:repeat(3,1fr)}
+.sk-row-label{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ink4);margin-bottom:2px;padding-left:2px}
+.sk{border-radius:22px;padding:24px 22px;display:flex;flex-direction:column;gap:8px;
+  border:2px solid transparent;transition:transform .4s cubic-bezier(.34,1.56,.64,1),box-shadow .4s}
+.sk:hover{transform:translateY(-8px) perspective(500px) rotateX(5deg) rotateY(-3deg);
+  box-shadow:0 20px 60px rgba(20,24,16,.13)}
+.sk-ico{font-size:28px;line-height:1}
+.sk-n{font-family:var(--sans);font-size:15px;font-weight:700}
+.sk-d{font-size:12px;font-weight:400;line-height:1.55}
+/* Tools gradient green */
+.sk-t1{background:#5A8C3A;border-color:#4A7830}
+.sk-t1 .sk-n,.sk-t1 .sk-d{color:rgba(255,255,255,.9)}
+.sk-t2{background:var(--gr);border-color:var(--gr2)}
+.sk-t2 .sk-n,.sk-t2 .sk-d{color:rgba(255,255,255,.92)}
+.sk-t3{background:#8CB86A;border-color:#78A055}
+.sk-t3 .sk-n{color:var(--ink2)}.sk-t3 .sk-d{color:rgba(30,40,20,.65)}
+.sk-t4{background:var(--gr-bg);border-color:var(--gr-l)}
+.sk-t4 .sk-n{color:var(--gr)}.sk-t4 .sk-d{color:var(--ink3)}
+/* Areas gradient pink */
+.sk-a1{background:var(--pk);border-color:#C03060}
+.sk-a1 .sk-n,.sk-a1 .sk-d{color:rgba(255,255,255,.95)}
+.sk-a2{background:#F07898;border-color:#D06080}
+.sk-a2 .sk-n,.sk-a2 .sk-d{color:rgba(255,255,255,.92)}
+.sk-a3{background:var(--pk-bg);border-color:var(--pk-l)}
+.sk-a3 .sk-n{color:var(--pk)}.sk-a3 .sk-d{color:var(--ink3)}
+
+/* ── PROJECTS ── */
+#projects{background:var(--w)}
+.pj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:start}
+.pj{border-radius:24px;overflow:hidden;cursor:pointer;
+  transition:transform .42s cubic-bezier(.34,1.56,.64,1),box-shadow .42s;
+  display:flex;flex-direction:column;border:2px solid transparent}
+.pj:nth-child(1){background:var(--gr-bg);border-color:var(--gr-l)}
+.pj:nth-child(2){background:var(--pk-bg);border-color:var(--pk-l)}
+.pj:nth-child(3){background:var(--yl-bg);border-color:var(--yl-l)}
+.pj:hover{transform:translateY(-10px) perspective(700px) rotateX(4deg);box-shadow:0 24px 60px rgba(20,24,16,.14)}
+.pj-head{height:160px;flex-shrink:0;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.pj:nth-child(1) .pj-head{background:linear-gradient(135deg,#C8DFB8 0%,#A0C888 50%,#78A850 100%)}
+.pj:nth-child(2) .pj-head{background:linear-gradient(135deg,#F8C0D0 0%,#F090A8 50%,#E85080 100%)}
+.pj:nth-child(3) .pj-head{background:linear-gradient(135deg,#F5E898 0%,#ECD050 50%,#D4A820 100%)}
+.pj-head-label{font-family:var(--disp);font-size:clamp(20px,2.2vw,26px);font-weight:800;
+  letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.9);
+  text-shadow:0 2px 12px rgba(0,0,0,.12);text-align:center;padding:0 20px;line-height:1.1}
+.pj:hover .pj-head{filter:brightness(1.04)}
+.pj-body{padding:22px 22px 0;flex:1;display:flex;flex-direction:column}
+.pj-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.ptag{font-family:var(--sans);font-size:9px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;padding:5px 12px;border-radius:100px}
+.ptag-bi{background:rgba(46,94,32,.14);color:var(--gr);border:1px solid var(--gr-l)}
+.ptag-ai{background:#EDE4F6;color:#5A38B0;border:1px solid #D0C8EC}
+.ptag-ec{background:rgba(232,80,122,.14);color:var(--pk);border:1px solid var(--pk-l)}
+.ptag-rs{background:var(--yl-bg);color:#7A6000;border:1px solid var(--yl-l)}
+.pj-name{font-family:var(--serif);font-size:18px;font-weight:400;color:var(--ink);line-height:1.22;margin-bottom:8px}
+.pj-desc{font-size:13px;font-weight:300;color:var(--ink3);line-height:1.7;flex:1}
+.pj-foot{padding:12px 20px;margin-top:14px;border-top:1.5px solid var(--b);
+  display:flex;justify-content:space-between;align-items:center;flex-shrink:0}
+.pj-tools{font-family:var(--sans);font-size:10px;font-weight:600;letter-spacing:.06em;color:var(--ink4)}
+.pj-arr{width:30px;height:30px;border:2px solid var(--b2);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--ink3);transition:all .25s}
+.pj:hover .pj-arr{background:var(--gr);border-color:var(--gr);color:#fff;transform:rotate(45deg)}
+
+/* ── EXPERIENCE ── */
+#experience{background:var(--off)}
+.exp-list{display:flex;flex-direction:column}
+.exp-row{display:grid;grid-template-columns:220px 1fr;gap:44px;padding:36px 0;border-bottom:2px solid var(--b)}
+.exp-row:first-child{padding-top:0}
+.exp-logo-wrap{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.exp-logo{width:48px;height:48px;border-radius:10px;background:var(--w);border:1.5px solid var(--b);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden;padding:4px}
+.exp-logo img{width:100%;height:100%;object-fit:contain}
+.exp-co{font-family:var(--disp);font-size:16px;font-weight:800;color:var(--gr)}
+.exp-period{font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.07em;color:var(--ink4)}
+.exp-role{font-family:var(--serif);font-size:19px;font-weight:400;color:var(--ink);line-height:1.2;margin-bottom:16px}
+.exp-buls{list-style:none;display:flex;flex-direction:column;gap:9px}
+.exp-buls li{font-size:13px;font-weight:300;color:var(--ink3);line-height:1.65;padding-left:20px;position:relative}
+.exp-buls li::before{content:'';position:absolute;left:0;top:8px;width:7px;height:7px;border-radius:50%;background:linear-gradient(135deg,var(--gr),var(--pk))}
+
+/* ── EDUCATION ── */
+#education{background:var(--ink)}
+#education .chip{background:rgba(46,94,32,.2);color:var(--gr3);border-color:rgba(46,94,32,.3)}
+#education h2.sh{color:#fff}
+#education h2.sh em{color:var(--yl)}
+.edu-row{display:grid;grid-template-columns:200px 1fr;gap:44px;padding:36px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+.edu-row:first-child{padding-top:0}
+.edu-yr{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.08em;color:rgba(255,255,255,.3)}
+.edu-deg{font-family:var(--serif);font-size:21px;font-weight:400;color:#fff;margin-bottom:4px}
+.edu-sch{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--gr3);margin-bottom:12px}
+.edu-desc{font-size:13px;font-weight:300;color:rgba(255,255,255,.5);line-height:1.7;margin-bottom:14px}
+.courses{display:flex;flex-wrap:wrap;gap:8px}
+.course{font-size:11px;font-weight:600;color:rgba(255,255,255,.45);padding:5px 14px;border:1px solid rgba(255,255,255,.12);border-radius:100px}
+
+/* ── FOOTER ── */
+footer{background:var(--pk);padding:80px 44px;position:relative;overflow:hidden;
+  display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end}
+footer::before{content:'';position:absolute;top:-80px;left:-40px;width:320px;height:320px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,255,255,.14) 0%,transparent 65%);pointer-events:none}
+footer::after{content:'';position:absolute;bottom:-60px;right:4%;width:240px;height:240px;border-radius:50%;
+  background:radial-gradient(circle,rgba(46,94,32,.18) 0%,transparent 65%);pointer-events:none}
+.ft-eye{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:14px}
+.ft-h{font-family:var(--disp);font-size:clamp(42px,5.5vw,68px);font-weight:800;line-height:.9;letter-spacing:-.02em;color:#fff;margin-bottom:20px}
+.ft-h em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--yl);display:block}
+.ft-sub{font-size:14px;font-weight:300;color:rgba(255,255,255,.55);line-height:1.4;max-width:420px;margin-bottom:28px}
+.ft-contacts{display:flex;flex-direction:column;gap:12px}
+.ft-contact-row{display:flex;align-items:center;gap:10px}
+.ft-contact-icon{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.18);
+  border:1px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.ft-contact-text{font-family:var(--sans);font-size:14px;font-weight:600;color:#fff}
+.ft-r{display:flex;flex-direction:column;align-items:flex-end;justify-content:flex-end;gap:16px;position:relative;z-index:1}
+.ft-links{display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+.ft-ext{font-size:13px;font-weight:600;color:rgba(255,255,255,.45);transition:color .2s}
+.ft-ext:hover{color:#fff}
+.ft-copy{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.28)}
+
+/* ── MODAL ── */
+.backdrop{position:fixed;inset:0;z-index:900;
+  background:rgba(14,18,12,.8);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  display:flex;align-items:flex-start;justify-content:center;
+  padding:60px 24px 48px;overflow-y:auto;
+  opacity:0;pointer-events:none;transition:opacity .3s}
+.backdrop.open{opacity:1;pointer-events:all}
+.modal{background:var(--w);border-radius:28px;max-width:840px;width:100%;
+  transform:translateY(20px) scale(.97);transition:transform .38s cubic-bezier(.34,1.56,.64,1);
+  box-shadow:0 36px 100px rgba(14,18,12,.32);overflow:hidden}
+.backdrop.open .modal{transform:translateY(0) scale(1)}
+.m-head{padding:28px 34px 22px;border-bottom:1px solid var(--b);
+  display:flex;justify-content:space-between;align-items:flex-start;gap:20px;
+  background:linear-gradient(180deg, var(--off) 0%, var(--w) 100%)}
+.m-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.m-title{font-family:var(--serif);font-size:24px;font-weight:400;font-style:italic;color:var(--ink);line-height:1.25;letter-spacing:-.01em}
+.m-x{width:36px;height:36px;flex-shrink:0;border:1.5px solid var(--b2);border-radius:50%;
+  background:transparent;color:var(--ink3);font-size:18px;
+  display:flex;align-items:center;justify-content:center;transition:all .2s;cursor:pointer}
+.m-x:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+/* m-body padding handled in modal extra styles below */
+.m-img{width:100%;border-radius:14px;margin-bottom:20px;border:1.5px solid var(--b)}
+.m-2img{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
+.m-2img img{width:100%;border-radius:12px;border:1.5px solid var(--b)}
+.m-hl{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
+.hl-c{background:var(--gr-bg);border:1.5px solid var(--gr-l);border-radius:14px;padding:15px 18px}
+.hl-l{font-family:var(--sans);font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gr);margin-bottom:5px}
+.hl-v{font-family:var(--sans);font-size:15px;font-weight:700;color:var(--ink)}
+.m-sec{margin-bottom:18px}
+.m-sec h4{font-family:var(--sans);font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gr);margin-bottom:8px}
+.m-sec p{font-size:14px;font-weight:300;color:var(--ink2);line-height:1.75}
+.m-chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
+.m-chip{font-family:var(--sans);font-size:11px;font-weight:700;color:var(--gr);
+  padding:6px 14px;border:1.5px solid var(--gr-l);border-radius:100px;background:var(--gr-bg)}
+
+@media(max-width:960px){
+  nav{padding:0 20px}.n-links{display:none}
+  .sec{padding:60px 20px}.hero{padding:80px 20px 50px}
+  .h-row{grid-template-columns:1fr;padding:0 20px}
+  .h-left,.h-right{display:none}
+  .pstk-open,.pstk-hcm{display:none}
+  .about-split{grid-template-columns:1fr}
+  .about-l,.about-r{padding:52px 20px;min-height:auto}
+  .sr-tools,.sr-areas{grid-template-columns:1fr 1fr}
+  .pj-grid{grid-template-columns:1fr}
+  .exp-row,.edu-row{grid-template-columns:1fr;gap:10px}
+  footer{grid-template-columns:1fr;gap:36px;padding:60px 20px}
+  .ft-r{align-items:flex-start}.ft-links{align-items:flex-start}
+  .m-head,.m-body{padding:18px}
+  .m-2img,.m-hl{grid-template-columns:1fr}
+}
+
+/* ── MODAL EXTRA STYLES for rich detail pages ── */
+
+/* Callout quote — warm amber so it doesn't clash with the green Solution card */
+.m-callout{
+  background:linear-gradient(135deg,#FFF8EE 0%,#FFF3E0 100%);
+  border-left:3px solid #D97706;
+  border-radius:0 12px 12px 0;
+  padding:16px 20px;
+  font-family:var(--sans);
+  font-size:14px;font-weight:300;color:var(--ink2);line-height:1.75;
+  margin-bottom:28px;
+  font-style:italic;
+}
+
+/* ── Section headings — clear uppercase label style, visually distinct from body ── */
+.m-sec-head{
+  display:flex;align-items:center;gap:10px;
+  font-family:var(--sans);
+  font-size:11px;font-weight:700;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--ink3);
+  margin:32px 0 14px;
+  padding-bottom:10px;
+  border-bottom:1.5px solid var(--b2);
+}
+.m-sec-head::before{
+  content:'';
+  display:inline-block;
+  width:18px;height:2px;
+  background:var(--gr);
+  flex-shrink:0;
+  border-radius:2px;
+}
+
+.m-before-after{
+  display:grid;grid-template-columns:1fr 1fr;gap:12px;
+  margin-bottom:24px;
+}
+.m-before{background:#FEF2F2;border:1px solid #FECACA;border-radius:14px;padding:18px 20px}
+.m-after{background:var(--gr-bg);border:1px solid var(--gr-l);border-radius:14px;padding:18px 20px}
+.m-ba-label{
+  font-family:var(--sans);font-size:11px;font-weight:600;
+  letter-spacing:.07em;text-transform:uppercase;
+  margin-bottom:10px;display:flex;align-items:center;gap:6px;
+}
+.m-before .m-ba-label{color:#DC2626}
+.m-after .m-ba-label{color:var(--gr)}
+.m-before p,.m-after p{
+  font-family:var(--sans);font-size:13px;font-weight:300;
+  color:var(--ink2);line-height:1.7;
+}
+
+.m-output-box{
+  background:linear-gradient(135deg,rgba(46,94,32,.06) 0%,rgba(46,94,32,.02) 100%);
+  border:1.5px solid var(--gr-l);border-radius:12px;
+  padding:16px 20px;margin-bottom:20px;
+  font-family:var(--sans);font-size:13px;font-weight:300;
+  color:var(--ink2);line-height:1.75;
+}
+.m-output-box strong{font-weight:600;color:var(--ink)}
+
+.m-stack-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:8px;
+  margin-bottom:16px;
+}
+.m-stack-item{
+  display:flex;align-items:center;gap:10px;
+  background:var(--off);border:1px solid var(--b);border-radius:10px;
+  padding:12px 14px;transition:border-color .2s;
+}
+.m-stack-item:hover{border-color:var(--gr-l)}
+.m-stack-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.m-stack-n{font-family:var(--sans);font-size:13px;font-weight:600;color:var(--ink)}
+.m-stack-d{font-family:var(--sans);font-size:11px;font-weight:400;color:var(--ink4);margin-top:2px}
+
+/* modal body: use Outfit (same as main site) for font consistency */
+.m-body{padding:26px 34px 40px;font-family:var(--sans)}
+.m-body p{font-family:var(--sans);font-weight:300;line-height:1.75;color:var(--ink2);font-size:14px}
+.m-body h4{font-family:var(--sans);font-size:13px;font-weight:600;color:var(--ink);
+  letter-spacing:.01em;text-transform:none;margin-bottom:6px}
+.m-sec p{font-family:var(--sans);font-size:14px;font-weight:300;color:var(--ink2);line-height:1.75}
+
+/* meta info block at top of modal */
+.m-meta{
+  display:flex;flex-direction:column;gap:10px;
+  margin-bottom:24px;font-size:13px;
+  border-bottom:1.5px solid var(--b);padding-bottom:20px;
+}
+.m-meta-row{display:flex;gap:16px}
+.m-meta-label{
+  width:110px;color:var(--ink4);
+  font-family:var(--sans);font-size:12px;font-weight:500;
+  display:flex;align-items:flex-start;gap:8px;flex-shrink:0;
+  padding-top:2px;
+}
+.m-meta-val{flex:1;color:var(--ink2);font-family:var(--sans);font-weight:300;line-height:1.55}
+.m-meta-chips{flex:1;display:flex;gap:6px;flex-wrap:wrap}
+
+/* img captions */
+.m-img-caption{
+  text-align:center;font-family:var(--sans);
+  font-size:11px;font-weight:400;color:var(--ink4);
+  margin:-12px 0 20px;letter-spacing:.02em;
+}
+
+@media(max-width:700px){
+  .m-before-after,.m-stack-grid{grid-template-columns:1fr}
+  .m-body{padding:18px 18px 28px}
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="#" class="n-logo">Bich <em>Nguyen</em></a>
+  <ul class="n-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="mailto:ngocbich1509.work@gmail.com" class="n-cta">Get in touch</a>
+</nav>
+
+<section class="hero" id="home">
+  <div class="h-grid"></div>
+  <div class="h-wave"></div>
+
+  <div class="h-eye sr">
+    <div class="h-eye-dot"></div>
+    Available for new opportunities · Ho Chi Minh City
+  </div>
+
+  <div class="h-row sr d1">
+
+    <div class="h-left">
+      <div class="wow-text">PORT<br>FOLIO</div>
+      <p class="h-tagline">Data analysis<br>Market research<br>Business intelligence</p>
+    </div>
+
+    <div class="h-photo-col">
+      <div class="h-orbit"><div class="h-orbit-dot"></div></div>
+      <div class="pstk pstk-open">Open<br>to work ✦</div>
+      <div class="h-arch">
+        <img src="img_00.png" alt="Bich Nguyen">
+      </div>
+      <div class="pstk pstk-hcm">HCM<br>City 🇻🇳</div>
+    </div>
+
+    <div class="h-right">
+      <div class="wow-name">BICH<br><span class="outline">NGUYEN</span></div>
+      <p class="h-aspire">An aspiring analyst dedicated to transforming data<br>into actionable business value.</p>
+    </div>
+
+  </div>
+
+  <div class="h-cta-wrap sr d2">
+    <a href="#about" class="btn-gr">View Portfolio ↓</a>
+  </div>
+</section>
+
+<div class="mq-wrap">
+  <div class="mq-track">
+    <span class="mq-item">Welcome to my digital space — part resume, part storybook, fully me! <em>✦</em></span>
+    <span class="mq-item">Welcome to my digital space — part resume, part storybook, fully me! <em>✦</em></span>
+    <span class="mq-item">Welcome to my digital space — part resume, part storybook, fully me! <em>✦</em></span>
+    <span class="mq-item">Welcome to my digital space — part resume, part storybook, fully me! <em>✦</em></span>
+  </div>
+</div>
+
+<section id="about" style="padding:0">
+  <div class="about-split">
+    <div class="about-l sr">
+      <div class="chip">✦ About me</div>
+      <h2 class="sh" style="margin-bottom:20px">Who <em>I am.</em></h2>
+      <p>I'm <strong>Bich Nguyen</strong> — an analyst and researcher with over <strong>2 years of experience</strong> working across e-commerce, consumer goods, and product operations in Vietnam.</p>
+      <p>My work focuses on <strong>market analysis, brand research, and product portfolio strategy</strong> — digging into industry trends, competitive landscapes, and data to help teams make sharper decisions.</p>
+      <p>Right now I'm looking for my next role where analytical thinking can do meaningful work with a team that cares about doing things well.</p>
+    </div>
+    <div class="about-r sr d1">
+      <div class="chip chip-gr">✦ Quick facts</div>
+      <div class="fact-box">
+        <div class="f-row"><span class="fl">Location</span><span class="fv">Ho Chi Minh City, VN</span></div>
+        <div class="f-row"><span class="fl">Education</span><span class="fv">University of Economics HCMC (UEH)</span></div>
+        <div class="f-row"><span class="fl">Major</span><span class="fv">Technology &amp; Innovation Management</span></div>
+        <div class="f-row"><span class="fl">Status</span><span class="fv open">Open to new roles ✦</span></div>
+        <div class="f-row"><span class="fl">Tools</span><span class="fv">Power BI · SQL · Excel</span></div>
+        <div class="f-row"><span class="fl">Languages</span><span class="fv">Vietnamese · English</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="skills">
+  <div class="chip chip-gr sr">✦ Skills &amp; tools</div>
+  <h2 class="sh sr d1">What I <em>do.</em></h2>
+  <p class="ssub sr d2">A blend of analytical thinking and hands-on tools — from market research to data visualization.</p>
+  <div class="skills-section sr d2">
+    <div class="sk-row-label">Tools</div>
+    <div class="skills-row sr-tools">
+      <div class="sk sk-t1"><div class="sk-ico">🗄️</div><div class="sk-n">Excel &amp; SQL</div><div class="sk-d">Data cleaning, pivot analysis, multi-source consolidation and querying</div></div>
+      <div class="sk sk-t2"><div class="sk-ico">📊</div><div class="sk-n">Power BI</div><div class="sk-d">Handle large datasets, build dashboards, visualize KPIs and business metrics</div></div>
+      <div class="sk sk-t3"><div class="sk-ico">🤖</div><div class="sk-n">AI Integration</div><div class="sk-d">Work with AI APIs, build LLM-powered workflows and AI agents in real work contexts</div></div>
+      <div class="sk sk-t4"><div class="sk-ico">🧠</div><div class="sk-n">Analytical Thinking</div><div class="sk-d">Read data, find insights, connect findings to business context</div></div>
+    </div>
+    <div class="sk-row-label" style="margin-top:8px">Areas</div>
+    <div class="skills-row sr-areas">
+      <div class="sk sk-a1"><div class="sk-ico">🔍</div><div class="sk-n">Market Research</div><div class="sk-d">Industry analysis, brand research, product portfolio, competitive landscape &amp; communication strategy</div></div>
+      <div class="sk sk-a2"><div class="sk-ico">📋</div><div class="sk-n">Business Reporting</div><div class="sk-d">Build research decks and analysis reports that are clear and decision-ready for stakeholders</div></div>
+      <div class="sk sk-a3"><div class="sk-ico">🛒</div><div class="sk-n">E-commerce Ops</div><div class="sk-d">End-to-end operations on Shopee &amp; TikTok Shop; product research on Amazon marketplace</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="projects">
+  <div class="chip chip-pk sr">✦ Selected work</div>
+  <h2 class="sh sr d1">Projects.</h2>
+  <p class="ssub sr d2">Selected projects in BI reporting, AI tools, and market research.</p>
+  <div class="pj-grid">
+    <div class="pj sr" onclick="openM('m1')">
+      <div class="pj-head"><div class="pj-head-label">DATA / BI</div></div>
+      <div class="pj-body">
+        <div class="pj-tags"><span class="ptag ptag-bi">Data / BI</span></div>
+        <div class="pj-name">Sales Dashboard — Multi-country Performance</div>
+        <p class="pj-desc">Power BI consolidating 7M+ rows across 10+ Amazon markets. Automated FX conversion &amp; dynamic YTD logic reduced quarterly reporting from 1 week to under 1 day.</p>
+      </div>
+      <div class="pj-foot"><span class="pj-tools">Power BI · Power Query</span><div class="pj-arr">↗</div></div>
+    </div>
+    <div class="pj sr d1" onclick="openM('m2')">
+      <div class="pj-head"><div class="pj-head-label">AI PROJECT</div></div>
+      <div class="pj-body">
+        <div class="pj-tags"><span class="ptag ptag-ai">AI Project</span></div>
+        <div class="pj-name">LangLearn — AI Language Study App</div>
+        <p class="pj-desc">Telegram bot + web app that automatically generates flashcards from lesson photos using Gemini AI, with spaced repetition (SM-2) to personalize review sessions.</p>
+      </div>
+      <div class="pj-foot"><span class="pj-tools">Next.js · Gemini API · Supabase · Vercel · Telegram</span><div class="pj-arr">↗</div></div>
+    </div>
+    <div class="pj sr d2" onclick="openM('m3')">
+      <div class="pj-head"><div class="pj-head-label">ECOM · RESEARCH</div></div>
+      <div class="pj-body">
+        <div class="pj-tags"><span class="ptag ptag-ec">Ecommerce</span><span class="ptag ptag-rs">Research</span></div>
+        <div class="pj-name">Ecommerce-Native Brand Analysis</div>
+        <p class="pj-desc">An analysis of how two top-performing DTC food brands win on TikTok Shop — from product architecture and pricing strategy to content and communication.</p>
+      </div>
+      <div class="pj-foot"><span class="pj-tools">Excel · Google Slides</span><div class="pj-arr">↗</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="experience">
+  <div class="chip chip-gr sr">✦ Work history</div>
+  <h2 class="sh sr d1">Experience.</h2>
+  <div class="exp-list">
+    <div class="exp-row sr">
+      <div>
+        <div class="exp-logo-wrap">
+          <div class="exp-logo"><img src="img_01.png" alt="Yes4All"></div>
+          <div class="exp-co">Yes4All</div>
+        </div>
+        <div class="exp-period">Nov 2025 – Apr 2026</div>
+      </div>
+      <div>
+        <div class="exp-role">Market Insights Analyst</div>
+        <ul class="exp-buls">
+          <li>Consolidated 7M+ rows of multi-country data via Power BI + Power Query</li>
+          <li>Tracked category KPIs across 10+ Amazon marketplaces</li>
+          <li>Produced country-level market sizing &amp; consumer behavior reports</li>
+        </ul>
+      </div>
+    </div>
+    <div class="exp-row sr d1">
+      <div>
+        <div class="exp-logo-wrap">
+          <div class="exp-logo"><img src="img_02.png" alt="Vita Life"></div>
+          <div class="exp-co">Vita Life</div>
+        </div>
+        <div class="exp-period">May 2025 – Sep 2025</div>
+      </div>
+      <div>
+        <div class="exp-role">Executive Assistant</div>
+        <ul class="exp-buls">
+          <li>Built internal tracking systems and operational documentation to monitor business setup progress</li>
+          <li>Conducted market and competitor research on Shopee and Amazon to support product portfolio decisions</li>
+        </ul>
+      </div>
+    </div>
+    <div class="exp-row sr d2">
+      <div>
+        <div class="exp-logo-wrap">
+          <div class="exp-logo"><img src="img_03.png" alt="Mebiphar"></div>
+          <div class="exp-co">Mebiphar</div>
+        </div>
+        <div class="exp-period">Aug 2024 – Mar 2025</div>
+      </div>
+      <div>
+        <div class="exp-role">E-commerce Operations</div>
+        <ul class="exp-buls">
+          <li>Managed end-to-end ecommerce operations on Shopee and TikTok Shop including pricing, promotions, and order handling</li>
+          <li>Consolidated sales data to track performance and support campaign post-review across teams</li>
+        </ul>
+      </div>
+    </div>
+    <div class="exp-row sr d3">
+      <div>
+        <div class="exp-logo-wrap">
+          <div class="exp-logo"><img src="img_04.png" alt="Menla Life"></div>
+          <div class="exp-co">Menla Life</div>
+        </div>
+        <div class="exp-period">Jan 2024 – Apr 2025</div>
+      </div>
+      <div>
+        <div class="exp-role">Marketing Intern → Product Operations Assistant</div>
+        <ul class="exp-buls">
+          <li>Conducted category research and competitor analysis for functional food products to support product positioning</li>
+          <li>Supported product launch coordination across sales and R&amp;D teams</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="education">
+  <div class="chip sr">✦ Education</div>
+  <h2 class="sh sr d1">Background.</h2>
+  <div class="edu-row sr d2">
+    <div class="edu-yr">2021 – 2025</div>
+    <div>
+      <div class="edu-deg">Bachelor's in Business Administration</div>
+      <div class="edu-sch">University of Economics HCMC (UEH)</div>
+      <div class="edu-desc">Major: Technology and Innovation Management — Vietnam's first bachelor's program focused on emerging technologies and AI in business.</div>
+      <div class="courses">
+        <span class="course">Innovation Management</span>
+        <span class="course">Technology Management</span>
+        <span class="course">A.I. in Business</span>
+        <span class="course">Business Intelligence</span>
+        <span class="course">Marketing Innovation</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="sr">
+    <div class="ft-eye">✦ Let's connect</div>
+    <h2 class="ft-h">Let's work<em>together.</em></h2>
+    <p class="ft-sub">Open to full-time roles in data analysis, market research, or business intelligence. Based in Ho Chi Minh City, Vietnam.</p>
+    <div class="ft-contacts">
+      <div class="ft-contact-row">
+        <div class="ft-contact-icon">✉</div>
+        <span class="ft-contact-text">ngocbich1509.work@gmail.com</span>
+      </div>
+      <div class="ft-contact-row">
+        <div class="ft-contact-icon">📞</div>
+        <span class="ft-contact-text">0784 887 477</span>
+      </div>
+    </div>
+  </div>
+  <div class="ft-r sr d1">
+    <div class="ft-links">
+      <a href="https://linkedin.com/in/" class="ft-ext" target="_blank">LinkedIn →</a>
+    </div>
+    <div class="ft-copy">Bich Nguyen · 2026</div>
+  </div>
+</footer>
+
+
+<div class="backdrop" id="m1" onclick="bgX(event,'m1')">
+  <div class="modal">
+    <div class="m-head">
+      <div>
+        <div class="m-title">Sales Dashboard — Multi-country Performance</div>
+      </div>
+      <button class="m-x" onclick="closeM('m1')">✕</button>
+    </div>
+    <div class="m-body">
+      <div class="m-meta">
+        <div class="m-meta-row">
+          <div class="m-meta-label">📄 Description</div>
+          <div class="m-meta-val">Power BI dashboard consolidating sales and marketing data across 10+ Amazon marketplaces, with automated refresh to support performance tracking and reporting.</div>
+        </div>
+        <div class="m-meta-row">
+          <div class="m-meta-label">🛠️ Tools</div>
+          <div class="m-meta-chips">
+            <span class="ptag" style="background:#FEE2E2; color:#DC2626; border: 1px solid #FECACA;">Power BI</span>
+            <span class="ptag" style="background:#FEE2E2; color:#DC2626; border: 1px solid #FECACA;">Power Query</span>
+          </div>
+        </div>
+        <div class="m-meta-row">
+          <div class="m-meta-label">🏷️ Type</div>
+          <div class="m-meta-chips"><span class="ptag ptag-bi">Data / BI</span></div>
+        </div>
+      </div>
+      <div class="m-callout">Quarterly Amazon sales report for Yes4All across 10 markets — automated from raw data to final output using Power BI, replacing a 1-week manual Excel process.</div>
+      <div class="m-sec-head">Problem &amp; Solution</div>
+      <div class="m-before-after">
+        <div class="m-before"><div class="m-ba-label">⟵ Before</div><p>~2M rows of Amazon sales data processed in Excel – slow, prone to crashing, no automation. One full week per quarter just to produce a single report.</p></div>
+        <div class="m-after"><div class="m-ba-label">After ⟶</div><p>Power BI model with automated data ingestion, dynamic FX conversion, and YTD comparison. Each quarterly update takes under a day – export and send.</p></div>
+      </div>
+      <div class="m-sec-head">How the model works</div>
+      <div class="m-sec" style="margin-bottom:8px"><h4>Data Architecture</h4></div>
+      <img src="img_05.png" class="m-img" alt="Data sources architecture">
+      <div class="m-sec" style="margin-bottom:8px"><h4>Power BI — Model Logic</h4></div>
+      <img src="img_06.png" class="m-img" alt="Model logic flow">
+      <div class="m-sec-head">Tech stack</div>
+      <div class="m-stack-grid">
+        <div class="m-stack-item"><span class="m-stack-dot" style="background:#2563EB"></span><div><div class="m-stack-n">Power BI</div><div class="m-stack-d">Dashboard + DAX</div></div></div>
+        <div class="m-stack-item"><span class="m-stack-dot" style="background:#16A34A"></span><div><div class="m-stack-n">Power Query</div><div class="m-stack-d">Data ingestion + transform</div></div></div>
+        <div class="m-stack-item"><span class="m-stack-dot" style="background:#D97706"></span><div><div class="m-stack-n">Excel</div><div class="m-stack-d">FX table, source files</div></div></div>
+        <div class="m-stack-item"><span class="m-stack-dot" style="background:#7C3AED"></span><div><div class="m-stack-n">SmartScout</div><div class="m-stack-d">Competitive metrics</div></div></div>
+      </div>
+      <div class="m-sec-head">Demo</div>
+      <img src="img_07.png" class="m-img" alt="Power BI dashboard live view">
+      <p class="m-img-caption">Report view — Power BI screenshots</p>
+      <div class="m-output-box" style="margin-bottom: 0;"><strong>Result:</strong> Quarterly reporting time reduced from ~1 week to under 1 day. The model handles data refresh, FX conversion, category mapping, and output formatting automatically — the analyst exports and sends.</div>
+    </div>
+  </div>
+</div>
+
+
+<div class="backdrop" id="m2" onclick="bgX(event,'m2')">
+  <div class="modal">
+    <div class="m-head">
+      <div>
+        <div class="m-title">LangLearn — AI Language Study App</div>
+      </div>
+      <button class="m-x" onclick="closeM('m2')">✕</button>
+    </div>
+    <div class="m-body">
+      <div class="m-meta">
+        <div class="m-meta-row">
+          <div class="m-meta-label">📄 Description</div>
+          <div class="m-meta-val">Telegram bot + web app that automatically turns lesson photos into flashcards using Gemini AI, with spaced repetition (SM-2) to personalize review sessions.</div>
+        </div>
+        <div class="m-meta-row">
+          <div class="m-meta-label">🛠️ Tools</div>
+          <div class="m-meta-chips">
+            <span class="ptag" style="background:#FEF3C7; color:#D97706; border: 1px solid #FDE68A;">Next.js</span>
+            <span class="ptag" style="background:#F3E8FF; color:#7E22CE; border: 1px solid #E9D5FF;">Gemini API</span>
+            <span class="ptag" style="background:#DCFCE7; color:#15803D; border: 1px solid #BBF7D0;">Supabase</span>
+            <span class="ptag" style="background:#DBEAFE; color:#1D4ED8; border: 1px solid #BFDBFE;">Vercel</span>
+            <span class="ptag" style="background:#CCFBF1; color:#0F766E; border: 1px solid #99F6E4;">Telegram</span>
+          </div>
+        </div>
+        <div class="m-meta-row">
+          <div class="m-meta-label">🏷️ Type</div>
+          <div class="m-meta-chips"><span class="ptag ptag-ai" style="background:#FDE68A; color:#92400E; border: 1px solid #FCD34D;">AI Project</span></div>
+        </div>
+      </div>
+      
+      <div class="m-callout">Telegram bot + web app that automatically turns lesson photos into personalized flashcard sessions — powered by Gemini AI and spaced repetition (SM-2).</div>
+      <div class="m-sec-head">Origin story</div>
+      <div class="m-sec">
+        <p>A friend learning Mandarin at a private center couldn't use language learning apps – it had its own vocabulary, not his class's. So he didn't review at all. That gap between your classroom content and structured daily review is what LangLearn solves.</p>
+      </div>
+
+      <div class="m-sec-head">Problem &amp; Solution</div>
+      <div class="m-before-after">
+        <div class="m-before"><div class="m-ba-label">❌ Problem</div><p>Language learning apps (e.g. Duolingo) use their own standard library. Learners enrolled in private centers can't practice their class vocabulary with any existing app.</p></div>
+        <div class="m-after"><div class="m-ba-label">✅ Solution</div><p><strong>Photograph your lesson pages</strong> → Bot <strong>OCR</strong>s it → Flashcards generated <strong>instantly</strong> → SM-2 schedules the next review → Reminders sent automatically.</p></div>
+      </div>
+
+      <div class="m-sec-head">User flow</div>
+      <img src="img_10.png" class="m-img" alt="User flow: Start bot → Gemini OCR → SM-2 → reminders">
+
+      <div class="m-sec-head">Tech stack</div>
+      <div style="overflow-x: auto; margin-bottom: 24px;">
+        <table style="width: 100%; border-collapse: collapse; font-size: 13px; font-family: var(--sans); color: var(--ink2); text-align: left;">
+          <thead>
+            <tr style="background: var(--off); border-bottom: 2px solid var(--b);">
+              <th style="padding: 12px 16px; font-weight: 600; color: var(--ink);">Layer</th>
+              <th style="padding: 12px 16px; font-weight: 600; color: var(--ink);">Tool</th>
+              <th style="padding: 12px 16px; font-weight: 600; color: var(--ink);">Role</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid var(--b);">
+              <td style="padding: 12px 16px; font-weight: 600;">Bot</td><td style="padding: 12px 16px;">Telegram Bot API</td><td style="padding: 12px 16px;">Image upload + reminders</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--b);">
+              <td style="padding: 12px 16px; font-weight: 600;">Frontend</td><td style="padding: 12px 16px;">Next.js + Vercel</td><td style="padding: 12px 16px;">Web app, API routes</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--b);">
+              <td style="padding: 12px 16px; font-weight: 600;">Database</td><td style="padding: 12px 16px;">Supabase</td><td style="padding: 12px 16px;">PostgreSQL + RLS</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--b);">
+              <td style="padding: 12px 16px; font-weight: 600;">AI</td><td style="padding: 12px 16px;">Gemini 2.5 Flash</td><td style="padding: 12px 16px;">OCR + card generation</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--b);">
+              <td style="padding: 12px 16px; font-weight: 600;">Cron</td><td style="padding: 12px 16px;">GitHub Actions</td><td style="padding: 12px 16px;">Daily reminder</td>
+            </tr>
+            <tr>
+              <td style="padding: 12px 16px; font-weight: 600;">Algorithm</td><td style="padding: 12px 16px;">SM-2 Spaced Repetition</td><td style="padding: 12px 16px;">Spaced repetition logic</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="m-sec-head">Demo</div>
+      <div class="m-sec">
+        <h4>Onboarding &amp; Class Day</h4>
+        <p style="font-size: 13px; color: var(--ink4); margin-bottom: 16px;">Real conversation — user sets up their profile, sends lesson photos, and receives a study link</p>
+        <div class="m-2img">
+          <div>
+            <img src="img_09.png" alt="Onboarding flow" style="margin-bottom: 8px;">
+            <p style="font-size: 11px; color: var(--ink4); line-height: 1.5; font-family: var(--sans);">Onboarding: user selects language, class days, and preferred review time</p>
+          </div>
+          <div>
+            <img src="img_08.png" alt="Bot processing photos" style="margin-bottom: 8px;">
+            <p style="font-size: 11px; color: var(--ink4); line-height: 1.5; font-family: var(--sans);">Bot processes lesson photos, extracts vocabulary items, and returns a personalized study link</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="m-sec" style="margin-top: 28px;">
+        <h4>Study Session</h4>
+        <p style="font-size: 13px; color: var(--ink4); margin-bottom: 16px;">3 study modes, all pulling from the learner's own lesson content</p>
+        <div class="m-2img" style="row-gap: 24px;">
+          <div>
+            <img src="img_11.png" alt="Flashcard front" style="margin-bottom: 8px;">
+            <p style="font-size: 11px; color: var(--ink4); line-height: 1.5; font-family: var(--sans);">Flashcard front — Chinese character + pinyin (optional)</p>
+          </div>
+          <div>
+            <img src="img_12.png" alt="Flashcard back" style="margin-bottom: 8px;">
+            <p style="font-size: 11px; color: var(--ink4); line-height: 1.5; font-family: var(--sans);">Flashcard back — pinyin and meaning revealed, with SM-2 rating buttons</p>
+          </div>
+          <div>
+            <img src="img_13.png" alt="Quiz mode" style="margin-bottom: 8px;">
+            <p style="font-size: 11px; color: var(--ink4); line-height: 1.5; font-family: var(--sans);">Quiz mode — multiple choice with pinyin hint</p>
+          </div>
+          <div>
+            <img src="img_14.png" alt="Word match" style="margin-bottom: 8px;">
+            <p style="font-size: 11px; color: var(--ink4); line-height: 1.5; font-family: var(--sans);">Word match — tap to pair characters with meanings</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="backdrop" id="m3" onclick="bgX(event,'m3')">
+  <div class="modal">
+    <div class="m-head">
+      <div>
+        <div class="m-title">Ecommerce-Native Brand Analysis</div>
+      </div>
+      <button class="m-x" onclick="closeM('m3')">✕</button>
+    </div>
+    <div class="m-body">
+      <div class="m-meta">
+        <div class="m-meta-row">
+          <div class="m-meta-label">📄 Description</div>
+          <div class="m-meta-val">An analysis of two top-performing DTC food brands on TikTok Shop — exploring product architecture, pricing strategy, and communication to understand where their growth comes from.</div>
+        </div>
+        <div class="m-meta-row">
+          <div class="m-meta-label">🛠️ Tools</div>
+          <div class="m-meta-chips">
+            <span class="ptag" style="background:#ECFCCB; color:#4D7C0F; border: 1px solid #D9F99D;">Excel</span>
+            <span class="ptag" style="background:#FEF08A; color:#A16207; border: 1px solid #FDE047;">Google Slides</span>
+          </div>
+        </div>
+        <div class="m-meta-row">
+          <div class="m-meta-label">🏷️ Type</div>
+          <div class="m-meta-chips">
+            <span class="ptag ptag-ec" style="background:rgba(232,80,122,.14); color:var(--pk); border:1px solid var(--pk-l);">Ecommerce</span>
+            <span class="ptag ptag-rs" style="background:var(--yl-bg); color:#7A6000; border:1px solid var(--yl-l);">Market Research</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="m-callout">An analysis of two top-performing TikTok Shop food brands — studying how they structure product, pricing, bundles, and content to build outsized growth.</div>
+
+      <div class="m-sec-head">Context</div>
+      <div class="m-sec">
+        <p>The snacks &amp; instant food market in Vietnam has seen a strong rise of TikTok Shop-native players with outsized livestream &amp; affiliate spend. This analysis looks at two top performers — <strong>Mì Cay Ba Báo</strong> and <strong>Ăn Cùng Bà Tuyết</strong> — to understand how they structure product, bundle, price and communication.</p>
+      </div>
+
+      <div class="m-sec-head">Data &amp; Methodology</div>
+      <div class="m-sec" style="margin-bottom: 24px;">
+        <p style="margin-bottom: 8px;"><strong>Sources:</strong> Shopee &amp; TikTok Shop official stores — product listings, pricing, bundle structure, and sales volume collected manually.</p>
+        <p style="margin-bottom: 16px;"><strong>What I collected:</strong> For each brand — listing name, SKU variants, original price, discounted price, promotion rate, units sold, bundle type, product lines included, GWP (gift-with-purchase), and channel tags in listing name.</p>
+        
+        <p style="font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 12px; font-family: var(--sans);">How I processed it:</p>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+          <div style="background:var(--off); border:1px solid var(--b); border-radius:12px; padding:16px 18px;">
+            <div style="font-family:var(--sans); font-size:12px; font-weight:600; margin-bottom:12px; color:var(--ink);">Mì Cay Ba Báo</div>
+            <ul style="font-size:13px; font-family:var(--sans); font-weight:300; color:var(--ink2); line-height:1.7; padding-left:16px; margin:0; display:flex; flex-direction:column; gap:6px;">
+              <li>Classified listings by bundle type and calculated % units sold by bundle type</li>
+              <li>Extracted 30D quantity per listing → mapped back to raw SKUs</li>
+              <li>Parsed product lines per listing → calculated cross-line add-on frequency</li>
+              <li>Parsed channel tags from listing names → classified listings by sales channel</li>
+              <li>Built price range ladders, mapped min/max pricing and promotion strategy for GWP</li>
+              <li>Calculated price per pack and estimated revenue per listing</li>
+            </ul>
+          </div>
+          <div style="background:var(--off); border:1px solid var(--b); border-radius:12px; padding:16px 18px;">
+            <div style="font-family:var(--sans); font-size:12px; font-weight:600; margin-bottom:12px; color:var(--ink);">Ăn Cùng Bà Tuyết</div>
+            <ul style="font-size:13px; font-family:var(--sans); font-weight:300; color:var(--ink2); line-height:1.7; padding-left:16px; margin:0; display:flex; flex-direction:column; gap:6px;">
+              <li>Classified SKU variants by product line (chân gà, đùi gà, snack ướt,...)</li>
+              <li>Classified each SKU into a bundle type (Single/Same-line/Cross-line)</li>
+              <li>Parsed product line combinations per listing to count cross-line mix frequency</li>
+              <li>Built price range ladders and mapped min/max pricing by bundle type</li>
+              <li>Calculated promotion range (min/max discount %) per bundle type</li>
+              <li>Calculated GWP rate to show % SKUs with attached gift items</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="m-sec-head">Brand 1 — Mì Cay Ba Báo</div>
+      <img src="img_15.png" class="m-img" alt="Mì Cay Ba Báo brand ecom snapshot" style="margin-bottom: 16px;">
+      
+      <div class="m-sec" style="margin-bottom: 24px;">
+        <p style="font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 8px;">One-product deep, multi-layer bundle</p>
+        <p style="font-size: 13px; font-weight: 300; color: var(--ink2); line-height: 1.65; margin-bottom: 8px;">Mì Cay Ba Báo is heavily concentrated - just a single product (instant noodles - 1 hero SKU). All 46 listings serve a single purpose: scale bundle size from 1 -> 3 -> 6 -> 10 -> 20 -> 30 packs. The 10-pack is the clear hero, driving the bulk of unit volume and cross-line add-ons.</p>
+        <p style="font-size: 13px; font-weight: 300; color: var(--ink2); line-height: 1.65; margin-bottom: 8px;">The cross-line add-ons strategy is equally systematic. Of all upgrade/add-on listings, 80% link to ớt, 30% to kim chi, 25% to muối chấm. These aren't random assortments - they create a 'complete meal kit' perception and pull AOV higher without requiring new product development.</p>
+        <p style="font-size: 13px; font-weight: 300; color: var(--ink2); line-height: 1.65; margin-bottom: 8px;">Promotion is strictly bundle-led. Cross-line bundles (76.3%) while single SKUs carry almost no promotion (5.1%). The brand is intentional: brand pushes transparent bulk sizing to best-selling bundles and uses deep discounts only on LIVE / FLASH SALE to compel fast buyers.</p>
+      </div>
+
+      <img src="img_16.png" class="m-img" alt="Mì Cay Ba Báo Brand Snapshot" style="margin-bottom: 16px;">
+      <img src="img_17.png" class="m-img" alt="Mì Cay Ba Báo Brand Communication" style="margin-bottom: 16px;">
+
+      <div class="m-sec" style="margin-bottom: 32px;">
+        <p style="font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 8px; font-family: var(--sans);">Key content: Raw operational footage</p>
+        <p style="margin-bottom: 8px;">Brand channel (@Ăn Vặt Ba Báo: 372.9k followers on TikTok 2024) — mostly unscripted footage from the warehouse, packing lines, and franchise views. Facebook (84k followers) repurposes TikTok content and pushes impulse deals via Messenger.</p>
+        <p style="margin-bottom: 16px;">The content strategy is trust-first. Show the operation at scale (warehouse footage, order volume) to build trust before pushing commerce. Livestream is used to create urgency, not to discount — cross-line bundles (10x) only 2.5–12.5% even during live sessions.</p>
+        
+        <div style="background:var(--off); border-left:3px solid var(--gr); border-radius:0 10px 10px 0; padding:14px 18px;">
+          <p style="font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 8px; font-family: var(--sans);">Key observations — Mì Cay Ba Báo</p>
+          <ul style="font-size: 13px; font-family: var(--sans); font-weight: 300; color: var(--ink2); line-height: 1.7; padding-left: 16px; margin: 0; display:flex; flex-direction:column; gap:6px;">
+            <li><strong>Depth over breadth:</strong> 1 SKU = 46 listings outperforms wide portfolios by maximizing a single product's potential</li>
+            <li><strong>Livestream = urgency mechanism,</strong> not a massive discount channel</li>
+            <li><strong>Operational transparency</strong> (warehouse, packing, franchise) as a trust factor that punches above polished content for mass market buyers</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="m-sec-head">Brand 2 — Ăn Cùng Bà Tuyết</div>
+      <img src="img_18.png" class="m-img" alt="Ăn Cùng Bà Tuyết brand ecom snapshot" style="margin-bottom: 12px;">
+      <img src="img_19.png" class="m-img" alt="Ăn Cùng Bà Tuyết top 10 best sellers" style="margin-bottom: 16px;">
+      
+      <div class="m-sec" style="margin-bottom: 24px;">
+        <p style="font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 8px; font-family: var(--sans);">Far wider portfolio — 9 product lines, 136 SKU variants</p>
+        <p style="margin-bottom: 8px;">Where Mì Cay Ba Báo goes deep on one product, Bà Tuyết goes wide — 9 lines across chân gà, đùi gà, snack ướt, bim bim, thịt sấy, etc. 85% of listings are bundles, and ~50% push cross-line mixes spanning multiple product categories in a single order.</p>
+        <p>Bundle naming is a brand asset in itself. Names like 'Combo Tứ Đại', 'Combo Nhất Thống', 'Combo Tê Cay', 'Cốt Điện' borrow from gaming and kiếm hiệp slang — creating a brand universe that Gen Z buyers relate to and remember. GWP (gift-with-purchase) appears across 24% of SKU variants, used as a conversion nudge rather than a straight discount.</p>
+      </div>
+
+      <img src="img_20.png" class="m-img" alt="Ăn Cùng Bà Tuyết Brand Snapshot" style="margin-bottom: 16px;">
+      <img src="img_21.png" class="m-img" alt="Ăn Cùng Bà Tuyết Brand Communication" style="margin-bottom: 16px;">
+
+      <div class="m-sec" style="margin-bottom: 16px;">
+        <p style="font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 8px; font-family: var(--sans);">A character-driven universe</p>
+        <p style="margin-bottom: 16px;">With 3.2M followers on TikTok (the primary channel — 100% original content), all audio revolves around 'Bà Tuyết' — not just as a mascot, but as the central storyteller, community anchor, and face of transparency and CSR/charity mechanics. Facebook (238k followers) acts as a traffic driver for commerce push. This mirrors the Ba Báo approach at a larger scale and with a more developed brand identity.</p>
+        
+        <div style="background:var(--off); border-left:3px solid var(--gr); border-radius:0 10px 10px 0; padding:14px 18px;">
+          <p style="font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 8px; font-family: var(--sans);">Key observations — Ăn Cùng Bà Tuyết</p>
+          <ul style="font-size: 13px; font-family: var(--sans); font-weight: 300; color: var(--ink2); line-height: 1.7; padding-left: 16px; margin: 0; display:flex; flex-direction:column; gap:6px;">
+            <li><strong>A single consistent character</strong> replaces the need for KOL spend and creates stronger brand recall</li>
+            <li><strong>Bundle naming as entertainment</strong> extends the brand universe beyond pure product description</li>
+            <li><strong>GWP used as conversion nudge,</strong> not margin erosion — discount rates are carefully managed under 40% on their lowest bracket</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')})},{threshold:.07,rootMargin:'0px 0px -20px 0px'});
+document.querySelectorAll('.sr').forEach(el=>obs.observe(el));
+window.addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('on',scrollY>60)},{passive:true});
+function openM(id){document.body.style.overflow='hidden';document.getElementById('nav').style.display='none';document.getElementById(id).classList.add('open')}
+function closeM(id){document.body.style.overflow='';document.getElementById('nav').style.display='flex';document.getElementById(id).classList.remove('open')}
+function bgX(e,id){if(e.target===document.getElementById(id))closeM(id)}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.backdrop.open').forEach(m=>closeM(m.id))});
+</script>
+</body>
+</html>
